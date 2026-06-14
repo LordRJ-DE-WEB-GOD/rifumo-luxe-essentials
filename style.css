@@ -49,7 +49,13 @@ nav a{
 nav a:hover{
     color:#6A0DAD;
 }
-
+.offer-banner{
+    background:#8B5E3C;
+    color:white;
+    text-align:center;
+    padding:10px;
+    font-weight:bold;
+}
 /* HERO */
 
 .hero{
@@ -176,7 +182,18 @@ button:hover{
     color:#8B5E3C;
     margin-bottom:10px;
 }
+.search-box{
+    text-align:center;
+    margin:30px 0;
+}
 
+.search-box input{
+    width:300px;
+    max-width:90%;
+    padding:12px;
+    border:2px solid #6A0DAD;
+    border-radius:30px;
+}
 /* PRODUCTS */
 
 .products{
@@ -276,7 +293,22 @@ button:hover{
 .whatsapp-btn:hover{
     transform:translateY(-3px);
 }
-
+.floating-whatsapp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    font-size:30px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
 /* FOOTER */
 
 footer{
