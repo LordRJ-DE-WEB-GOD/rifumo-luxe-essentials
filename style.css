@@ -250,6 +250,61 @@ button:hover{
 .checkout-btn:hover{
     transform:scale(1.05);
 }
+
+/* MOBILE MENU */
+
+.menu-toggle{
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+#nav-links{
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+#nav-links li{
+    list-style: none;
+}
+
+#nav-links a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+@media (max-width: 768px){
+
+    nav{
+        flex-wrap: wrap;
+    }
+
+    .menu-toggle{
+        display: block;
+    }
+
+    #nav-links{
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+        background: purple;
+        padding: 20px 0;
+        border-radius: 10px;
+    }
+
+    #nav-links.active{
+        display: flex;
+    }
+
+    #nav-links li{
+        margin: 10px 0;
+    }
+}
 /* ABOUT US */
 
 .about{
