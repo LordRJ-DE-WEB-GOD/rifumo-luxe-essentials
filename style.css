@@ -182,6 +182,24 @@ button:hover{
 .cart-btn:hover{
     transform:scale(1.05);
 }
+
+#cart-items{
+    margin:40px 0;
+}
+
+.checkout-btn{
+    background:#25D366;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    border-radius:30px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.checkout-btn:hover{
+    transform:scale(1.05);
+}
 /* ABOUT US */
 
 .about{
