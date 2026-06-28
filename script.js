@@ -1,21 +1,60 @@
 // Load cart from local storage
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
-// Product prices
-const prices = {
-    "Glass Water Bottle": 80,
-    "Water Bottle": 110,
-    "Colorful Bottles (3pcs)": 100,
-    "Plastic Bottles (3pcs)": 100,
-    "Coffee Mug": 110,
-    "Thermal Cup": 150,
-    "Mini Fan": 50,
-    "Stitch Tumbler Cup": 90,
-    "Fluffy Animals Slippers": 180,
-    "Adidas Shoes": 0,
-    "Headphones": 100,
-    "Thermal Bottles": 100,
-    "Hot Water Bottles": 100
+// Product database
+const products = {
+    "Glass Water Bottle": {
+        price: 80,
+        image: "glassbottle.jpg.jpg"
+    },
+    "Water Bottle": {
+        price: 110,
+        image: "waterbottle.jpg.jpg"
+    },
+    "Colorful Bottles (3pcs)": {
+        price: 100,
+        image: "colorfulbottles.jpg"
+    },
+    "Plastic Bottles (3pcs)": {
+        price: 100,
+        image: "plasticbottles.jpg.jpg"
+    },
+    "Coffee Mug": {
+        price: 110,
+        image: "coffeemug.webp"
+    },
+    "Thermal Cup": {
+        price: 150,
+        image: "thermalcup.jpg.jpg"
+    },
+    "Mini Fan": {
+        price: 50,
+        image: "minifan.jpg.jpg"
+    },
+    "Stitch Tumbler Cup": {
+        price: 90,
+        image: "stitchcup.jpg.jpg"
+    },
+    "Fluffy Animals Slippers": {
+        price: 180,
+        image: "fluffy-animal.jpg.jpg"
+    },
+    "Adidas Shoes": {
+        price: 0,
+        image: "shoes.jpg.jpg"
+    },
+    "Headphones": {
+        price: 100,
+        image: "headphones.jpg.jpg"
+    },
+    "Thermal Bottles": {
+        price: 100,
+        image: "thermal-bottle.jpg.webp"
+    },
+    "Hot Water Bottles": {
+        price: 100,
+        image: "hot-water-bottle.jpg.jpg"
+    }
 };
 
 // Update cart count when page loads
@@ -24,7 +63,11 @@ updateCartCount();
 // Add product to cart
 function addToCart(product) {
 
-    cart.push(product);
+    if (cart[product]) {
+        cart[product]++;
+    } else {
+        cart[product] = 1;
+    }
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
@@ -38,72 +81,86 @@ function updateCartCount() {
 
     const cartCount = document.getElementById("cart-count");
 
+    let totalItems = 0;
+
+    for (let item in cart) {
+        totalItems += cart[item];
+    }
+
     if (cartCount) {
-        cartCount.textContent = cart.length;
+        cartCount.textContent = totalItems;
     }
 }
 
-// Display cart items
+// Display cart
 function displayCart() {
 
     const cartItems = document.getElementById("cart-items");
     const totalItems = document.getElementById("total-items");
     const totalPrice = document.getElementById("total-price");
 
-    // Stop if not on cart page
     if (!cartItems) return;
-
-    // Empty cart
-    if (cart.length === 0) {
-
-        cartItems.innerHTML = "<p>Your cart is empty.</p>";
-
-        if (totalItems) {
-            totalItems.textContent = "Total Items: 0";
-        }
-
-        if (totalPrice) {
-            totalPrice.textContent = "Total Price: R0";
-        }
-
-        return;
-    }
-
-    // Show total items
-    if (totalItems) {
-        totalItems.textContent = "Total Items: " + cart.length;
-    }
 
     cartItems.innerHTML = "";
 
+    let itemCount = 0;
     let total = 0;
 
-    cart.forEach((item, index) => {
+    for (let item in cart) {
 
-        total += prices[item] || 0;
+        let quantity = cart[item];
+        let subtotal = products[item].price * quantity;
+
+        itemCount += quantity;
+        total += subtotal;
 
         cartItems.innerHTML += `
             <div class="card">
+
+                <img src="${products[item].image}" alt="${item}">
+
                 <h3>${item}</h3>
-                <p><strong>Price:</strong> R${prices[item] || 0}</p>
+
+                <p><strong>Price:</strong> R${products[item].price}</p>
+
+                <p><strong>Quantity:</strong></p>
 
                 <button class="cart-btn"
-                onclick="removeItem(${index})">
+                onclick="decreaseQuantity('${item}')">-</button>
+
+                <span style="margin:0 10px;">${quantity}</span>
+
+                <button class="cart-btn"
+                onclick="increaseQuantity('${item}')">+</button>
+
+                <p><strong>Subtotal:</strong> R${subtotal}</p>
+
+                <button class="cart-btn"
+                onclick="removeItem('${item}')">
                     Remove
                 </button>
+
             </div>
         `;
-    });
+    }
+
+    if (itemCount === 0) {
+        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+    }
+
+    if (totalItems) {
+        totalItems.textContent = "Total Items: " + itemCount;
+    }
 
     if (totalPrice) {
         totalPrice.textContent = "Total Price: R" + total;
     }
 }
 
-// Remove one item
-function removeItem(index) {
+// Increase quantity
+function increaseQuantity(product) {
 
-    cart.splice(index, 1);
+    cart[product]++;
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
@@ -112,10 +169,38 @@ function removeItem(index) {
     displayCart();
 }
 
-// Clear all cart items
+// Decrease quantity
+function decreaseQuantity(product) {
+
+    cart[product]--;
+
+    if (cart[product] <= 0) {
+        delete cart[product];
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartCount();
+
+    displayCart();
+}
+
+// Remove item completely
+function removeItem(product) {
+
+    delete cart[product];
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartCount();
+
+    displayCart();
+}
+
+// Clear entire cart
 function clearCart() {
 
-    cart = [];
+    cart = {};
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
@@ -127,27 +212,35 @@ function clearCart() {
 // Checkout on WhatsApp
 function checkoutWhatsApp() {
 
-    if (cart.length === 0) {
+    if (Object.keys(cart).length === 0) {
         alert("Your cart is empty!");
         return;
     }
-
-    let total = 0;
 
     let message =
         "Hello RIFUMO LUXE ESSENTIALS,%0A%0A" +
         "I would like to order:%0A";
 
-    cart.forEach(item => {
+    let total = 0;
+    let itemCount = 0;
 
-        message += "- " + item + " (R" +
-        (prices[item] || 0) + ")%0A";
+    for (let item in cart) {
 
-        total += prices[item] || 0;
-    });
+        let quantity = cart[item];
+        let subtotal = products[item].price * quantity;
 
-    message += "%0ATotal Items: " + cart.length;
-    message += "%0ATotal Price: R" + total;
+        message +=
+            "- " + item +
+            " x" + quantity +
+            " = R" + subtotal + "%0A";
+
+        total += subtotal;
+        itemCount += quantity;
+    }
+
+    message += "%0A";
+    message += "Total Items: " + itemCount + "%0A";
+    message += "Total Price: R" + total;
 
     window.open(
         "https://wa.me/27768089626?text=" + message,
@@ -155,9 +248,9 @@ function checkoutWhatsApp() {
     );
 }
 
-// Product search
+// Product Search
 const searchInput = document.getElementById("searchInput");
-const products = document.querySelectorAll(".product-card");
+const productCards = document.querySelectorAll(".product-card");
 
 if (searchInput) {
 
@@ -165,7 +258,7 @@ if (searchInput) {
 
         let searchValue = searchInput.value.toLowerCase();
 
-        products.forEach(function (product) {
+        productCards.forEach(function (product) {
 
             let text = product.textContent.toLowerCase();
 
@@ -178,5 +271,5 @@ if (searchInput) {
     });
 }
 
-// Run cart display when page loads
+// Display cart on page load
 displayCart();
