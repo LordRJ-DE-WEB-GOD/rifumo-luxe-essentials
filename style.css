@@ -63,6 +63,56 @@ nav a:hover{
     margin-bottom:40px;
     font-size:18px;
 }
+/* Dark/Light Mode Button */
+
+#theme-toggle{
+    background: purple;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#theme-toggle:hover{
+    transform: scale(1.05);
+}
+
+/* Dark Mode Styles */
+
+.dark-mode{
+    background: #121212;
+    color: white;
+}
+
+.dark-mode header{
+    background: #1e1e1e;
+}
+
+.dark-mode nav{
+    background: #1e1e1e;
+}
+
+.dark-mode .card{
+    background: #222;
+    color: white;
+}
+
+.dark-mode footer{
+    background: #1e1e1e;
+    color: white;
+}
+
+.dark-mode input{
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+}
+
+.dark-mode a{
+    color: #d8b4fe;
+}
 /* HERO */
 
 .hero{
