@@ -1,7 +1,7 @@
-// Load cart from local storage
-let cart = JSON.parse(localStorage.getItem("cart")) || {};
+// =========================
+// PRODUCT DATABASE
+// =========================
 
-// Product database
 const products = {
     "Glass Water Bottle": {
         price: 80,
@@ -57,10 +57,14 @@ const products = {
     }
 };
 
-// Update cart count when page loads
+// =========================
+// CART
+// =========================
+
+let cart = JSON.parse(localStorage.getItem("cart")) || {};
+
 updateCartCount();
 
-// Add product to cart
 function addToCart(product) {
 
     if (cart[product]) {
@@ -76,7 +80,6 @@ function addToCart(product) {
     alert(product + " added to cart!");
 }
 
-// Update cart icon count
 function updateCartCount() {
 
     const cartCount = document.getElementById("cart-count");
@@ -92,7 +95,6 @@ function updateCartCount() {
     }
 }
 
-// Display cart
 function displayCart() {
 
     const cartItems = document.getElementById("cart-items");
@@ -157,7 +159,6 @@ function displayCart() {
     }
 }
 
-// Increase quantity
 function increaseQuantity(product) {
 
     cart[product]++;
@@ -169,7 +170,6 @@ function increaseQuantity(product) {
     displayCart();
 }
 
-// Decrease quantity
 function decreaseQuantity(product) {
 
     cart[product]--;
@@ -185,7 +185,6 @@ function decreaseQuantity(product) {
     displayCart();
 }
 
-// Remove item completely
 function removeItem(product) {
 
     delete cart[product];
@@ -197,7 +196,6 @@ function removeItem(product) {
     displayCart();
 }
 
-// Clear entire cart
 function clearCart() {
 
     cart = {};
@@ -209,7 +207,6 @@ function clearCart() {
     displayCart();
 }
 
-// Checkout on WhatsApp
 function checkoutWhatsApp() {
 
     if (Object.keys(cart).length === 0) {
@@ -248,7 +245,10 @@ function checkoutWhatsApp() {
     );
 }
 
-// Product Search
+// =========================
+// SEARCH BAR
+// =========================
+
 const searchInput = document.getElementById("searchInput");
 const productCards = document.querySelectorAll(".product-card");
 
@@ -271,5 +271,42 @@ if (searchInput) {
     });
 }
 
-// Display cart on page load
+// =========================
+// DARK / LIGHT MODE
+// =========================
+
+const themeButton = document.getElementById("theme-toggle");
+
+if (localStorage.getItem("theme") === "dark") {
+
+    document.body.classList.add("dark-mode");
+
+    if (themeButton) {
+        themeButton.textContent = "☀️ Light Mode";
+    }
+}
+
+if (themeButton) {
+
+    themeButton.addEventListener("click", () => {
+
+        document.body.classList.toggle("dark-mode");
+
+        if (document.body.classList.contains("dark-mode")) {
+
+            localStorage.setItem("theme", "dark");
+            themeButton.textContent = "☀️ Light Mode";
+
+        } else {
+
+            localStorage.setItem("theme", "light");
+            themeButton.textContent = "🌙 Dark Mode";
+        }
+    });
+}
+
+// =========================
+// LOAD CART PAGE
+// =========================
+
 displayCart();
