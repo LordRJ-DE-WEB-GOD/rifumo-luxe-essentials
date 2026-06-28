@@ -8,48 +8,54 @@
 </head>
 <body>
 
-<header>
-    <nav>
-        <div class="logo">
-            <img src="logo.jpg.jpeg" alt="Logo">
-        </div>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.jpg.jpeg" alt="RIFUMO LUXE ESSENTIALS Logo">
+            </div>
 
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="pricelist.html">Price List</a></li>
-            <li><a href="cart.html">Cart</a></li>
-        </ul>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pricelist.html">Price List</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
 
-        <div class="cart-icon">
-            🛒 <span id="cart-count">0</span>
-        </div>
-    </nav>
-</header>
+            <div class="cart-icon">
+                🛒 <span id="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
 
-<section class="products">
+    <section class="products">
 
-    <h2>🛒 Your Shopping Cart</h2>
+        <h2>🛒 Your Shopping Cart</h2>
 
-    <div id="cart-items"></div>
+        <p class="price-intro">
+            Review your selected products before checking out.
+        </p>
 
-    <button class="checkout-btn" onclick="checkoutWhatsApp()">
-        Checkout on WhatsApp
-    </button>
+        <div id="cart-items"></div>
 
-    <div id="cart-items"></div>
+        <h3 id="total-items">Total Items: 0</h3>
 
-<h3 id="total-items">Total Items: 0</h3>
+        <button class="cart-btn" onclick="clearCart()">
+            Clear Cart
+        </button>
 
-<button class="cart-btn" onclick="clearCart()">
-    Clear Cart
-</button>
+        <button class="checkout-btn" onclick="checkoutWhatsApp()">
+            Checkout on WhatsApp
+        </button>
 
-<button class="checkout-btn" onclick="checkoutWhatsApp()">
-    Checkout on WhatsApp
-</button>
+    </section>
 
-</section>
+    <footer>
+        <p>📞 076 808 9626 / 071 189 8610</p>
+        <p>📧 rifumolistern@gmail.com</p>
+        <p>📍 Ebony Park Ext 3, Tuva Street 1695</p>
+        <p>&copy; 2026 RIFUMO LUXE ESSENTIALS</p>
+    </footer>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
+
 </body>
 </html>
