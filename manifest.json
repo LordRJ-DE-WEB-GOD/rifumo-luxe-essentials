@@ -1,0 +1,16 @@
+{
+  "name": "RIFUMO LUXE ESSENTIALS",
+  "short_name": "RIFUMO LUXE",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#800080",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "logo.jpg.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    }
+  ]
+}
