@@ -79,6 +79,30 @@ nav a:hover{
     transform: scale(1.05);
 }
 
+/* Navigation Links */
+
+#nav-links a{
+    text-decoration: none;
+    color: #333; /* Dark text for light mode */
+    font-weight: bold;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+#nav-links a:hover{
+    color: purple;
+}
+
+/* Dark mode navigation links */
+
+.dark-mode #nav-links a{
+    color: white;
+}
+
+.dark-mode #nav-links a:hover{
+    color: #d8b4fe;
+}
+
 /* Dark Mode Styles */
 
 .dark-mode{
