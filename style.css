@@ -101,6 +101,16 @@ nav a:hover{
 .dark-mode #nav-links a:hover{
     color: #d8b4fe;
 }
+.menu-toggle{
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #000;
+}
+
+.dark-mode .menu-toggle{
+    color: #fff;
+}
 /* HERO */
 
 .hero{
