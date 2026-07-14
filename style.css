@@ -14,14 +14,16 @@ background-size:40px 40px;
     color:#333333;
 }
 
-/* NAVIGATION */
+/* ===========================
+   NAVIGATION
+=========================== */
 
 nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
     padding:20px 60px;
-    background:white;
+    background:#fff;
     position:sticky;
     top:0;
     z-index:1000;
@@ -33,83 +35,127 @@ nav{
     width:auto;
 }
 
-nav ul{
+/* Navigation Menu */
+
+#nav-links{
     display:flex;
+    align-items:center;
     list-style:none;
     gap:30px;
 }
 
-nav a{
-    text-decoration:none;
-    color:#333333;
-    font-weight:bold;
-    transition:0.3s;
+#nav-links li{
+    list-style:none;
 }
-
-nav a:hover{
-    color:#6A0DAD;
-}
-.offer-banner{
-    background:#8B5E3C;
-    color:white;
-    text-align:center;
-    padding:10px;
-    font-weight:bold;
-}
-
-.price-intro{
-    text-align:center;
-    color:#666;
-    margin-bottom:40px;
-    font-size:18px;
-}
-/* Dark/Light Mode Button */
-
-#theme-toggle{
-    background: purple;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-#theme-toggle:hover{
-    transform: scale(1.05);
-}
-
-/* Navigation Links */
 
 #nav-links a{
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
+    text-decoration:none;
+    color:#000;
+    font-weight:bold;
+    font-size:16px;
+    transition:0.3s ease;
 }
 
 #nav-links a:hover{
-    color: #6A0DAD;
+    color:#6A0DAD;
 }
 
-/* Dark Mode */
+/* Cart */
+
+.cart-icon{
+    font-size:20px;
+    font-weight:bold;
+    color:#6A0DAD;
+    margin-left:20px;
+}
+
+/* Theme Button */
+
+#theme-toggle{
+    background:#6A0DAD;
+    color:#fff;
+    border:none;
+    padding:10px 15px;
+    border-radius:25px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+#theme-toggle:hover{
+    transform:scale(1.05);
+}
+
+/* Mobile Menu Icon */
+
+.menu-toggle{
+    display:none;
+    font-size:30px;
+    cursor:pointer;
+    color:#000;
+}
+
+/* ===========================
+   DARK MODE
+=========================== */
+
+.dark-mode nav{
+    background:#1e1e1e;
+}
 
 .dark-mode #nav-links a{
-    color: #fff;
+    color:#fff;
 }
 
 .dark-mode #nav-links a:hover{
-    color: #d8b4fe;
-}
-.menu-toggle{
-    display: none;
-    font-size: 30px;
-    cursor: pointer;
-    color: #000;
+    color:#d8b4fe;
 }
 
 .dark-mode .menu-toggle{
-    color: #fff;
+    color:#fff;
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+    nav{
+        flex-wrap:wrap;
+        padding:20px;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    #nav-links{
+        display:none;
+        flex-direction:column;
+        width:100%;
+        margin-top:20px;
+        background:#6A0DAD;
+        border-radius:10px;
+        padding:20px 0;
+    }
+
+    #nav-links.active{
+        display:flex;
+    }
+
+    #nav-links li{
+        margin:10px 0;
+    }
+
+    /* White links on the purple mobile menu */
+    #nav-links a{
+        color:#fff;
+    }
+
+    .cart-icon{
+        margin-top:15px;
+    }
 }
 /* HERO */
 
@@ -249,82 +295,7 @@ button:hover{
     transform:scale(1.05);
 }
 
-/* MOBILE MENU */
 
-.menu-toggle{
-    display:none;
-    font-size:30px;
-    cursor:pointer;
-    color:#000;
-}
-
-.dark-mode .menu-toggle{
-    color:#fff;
-}
-
-#nav-links{
-    display:flex;
-    list-style:none;
-    gap:20px;
-}
-
-#nav-links li{
-    list-style:none;
-}
-
-#nav-links a{
-    text-decoration:none;
-    color:#000;
-    font-weight:bold;
-    transition:.3s;
-}
-
-#nav-links a:hover{
-    color:#6A0DAD;
-}
-
-.dark-mode #nav-links a{
-    color:#fff;
-}
-
-.dark-mode #nav-links a:hover{
-    color:#d8b4fe;
-}
-
-@media (max-width:768px){
-
-    nav{
-        flex-wrap:wrap;
-    }
-
-    .menu-toggle{
-        display:block;
-    }
-
-    #nav-links{
-        display:none;
-        flex-direction:column;
-        width:100%;
-        margin-top:20px;
-        text-align:center;
-        background:#6A0DAD;
-        border-radius:10px;
-        padding:20px 0;
-    }
-
-    #nav-links.active{
-        display:flex;
-    }
-
-    /* Menu items stay white because the menu background is purple */
-    #nav-links a{
-        color:#fff;
-    }
-
-    #nav-links li{
-        margin:10px 0;
-    }
-}
 /* ABOUT US */
 
 .about{
