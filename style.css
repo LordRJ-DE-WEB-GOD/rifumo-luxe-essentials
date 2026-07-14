@@ -252,55 +252,77 @@ button:hover{
 /* MOBILE MENU */
 
 .menu-toggle{
-    display: none;
-    font-size: 30px;
-    cursor: pointer;
-    color: white;
+    display:none;
+    font-size:30px;
+    cursor:pointer;
+    color:#000;
+}
+
+.dark-mode .menu-toggle{
+    color:#fff;
 }
 
 #nav-links{
-    display: flex;
-    list-style: none;
-    gap: 20px;
+    display:flex;
+    list-style:none;
+    gap:20px;
 }
 
 #nav-links li{
-    list-style: none;
+    list-style:none;
 }
 
 #nav-links a{
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
+    text-decoration:none;
+    color:#000;
+    font-weight:bold;
+    transition:.3s;
 }
 
-@media (max-width: 768px){
+#nav-links a:hover{
+    color:#6A0DAD;
+}
+
+.dark-mode #nav-links a{
+    color:#fff;
+}
+
+.dark-mode #nav-links a:hover{
+    color:#d8b4fe;
+}
+
+@media (max-width:768px){
 
     nav{
-        flex-wrap: wrap;
+        flex-wrap:wrap;
     }
 
     .menu-toggle{
-        display: block;
+        display:block;
     }
 
     #nav-links{
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        text-align: center;
-        margin-top: 20px;
-        background: purple;
-        padding: 20px 0;
-        border-radius: 10px;
+        display:none;
+        flex-direction:column;
+        width:100%;
+        margin-top:20px;
+        text-align:center;
+        background:#6A0DAD;
+        border-radius:10px;
+        padding:20px 0;
     }
 
     #nav-links.active{
-        display: flex;
+        display:flex;
+    }
+
+    /* Menu items stay white because the menu background is purple */
+    #nav-links a{
+        color:#fff;
     }
 
     #nav-links li{
-        margin: 10px 0;
+        margin:10px 0;
     }
 }
 /* ABOUT US */
