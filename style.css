@@ -157,6 +157,84 @@ nav{
         margin-top:15px;
     }
 }
+
+/* ===========================
+   DARK MODE (WHOLE WEBSITE)
+=========================== */
+
+.dark-mode{
+    background:#121212;
+    color:#ffffff;
+}
+
+.dark-mode body{
+    background:#121212;
+    color:#ffffff;
+}
+
+.dark-mode .hero{
+    background:linear-gradient(
+        rgba(106,13,173,0.25),
+        rgba(139,94,60,0.25)
+    );
+}
+
+.dark-mode .about,
+.dark-mode .delivery,
+.dark-mode .card,
+.dark-mode nav{
+    background:#1e1e1e;
+}
+
+.dark-mode .why-card{
+    background:#222;
+}
+
+.dark-mode p,
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode span,
+.dark-mode label{
+    color:#ffffff;
+}
+
+.dark-mode .hero h2,
+.dark-mode .products h2,
+.dark-mode .about h2,
+.dark-mode .why-us h2,
+.dark-mode .contact h2,
+.dark-mode .delivery h2{
+    color:#d8b4fe;
+}
+
+.dark-mode .hero p,
+.dark-mode .about p,
+.dark-mode .delivery p,
+.dark-mode .price-intro{
+    color:#dddddd;
+}
+
+.dark-mode input{
+    background:#333;
+    color:#fff;
+    border:1px solid #666;
+}
+
+.dark-mode footer{
+    background:#111;
+    color:#fff;
+}
+
+.dark-mode .search-box input{
+    background:#2a2a2a;
+    color:#fff;
+    border:2px solid #6A0DAD;
+}
+
+.dark-mode .cart-icon{
+    color:#d8b4fe;
+}
 /* HERO */
 
 .hero{
