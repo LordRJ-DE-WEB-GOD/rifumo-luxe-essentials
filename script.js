@@ -1,6 +1,10 @@
 // =========================
 // PRODUCT DATABASE
 // =========================
+// Note: Adidas Shoes is intentionally left out of this database.
+// It's priced as "50% off" rather than a fixed Rand amount, so it's
+// sold only via the direct WhatsApp order link on the page, not
+// through the cart (a cart total needs a real number to add up).
 
 const products = {
     "Glass Water Bottle": {
@@ -39,10 +43,6 @@ const products = {
         price: 180,
         image: "fluffy-animal.jpg.jpg"
     },
-    "Adidas Shoes": {
-        price: 0,
-        image: "shoes.jpg.jpg"
-    },
     "Headphones": {
         price: 100,
         image: "headphones.jpg.jpg"
@@ -66,6 +66,11 @@ let cart = JSON.parse(localStorage.getItem("cart")) || {};
 updateCartCount();
 
 function addToCart(product) {
+
+    if (!products[product]) {
+        console.warn("Tried to add an unknown product:", product);
+        return;
+    }
 
     if (cart[product]) {
         cart[product]++;
@@ -109,6 +114,8 @@ function displayCart() {
     let total = 0;
 
     for (let item in cart) {
+
+        if (!products[item]) continue;
 
         let quantity = cart[item];
         let subtotal = products[item].price * quantity;
@@ -214,33 +221,33 @@ function checkoutWhatsApp() {
         return;
     }
 
-    let message =
-        "Hello RIFUMO LUXE ESSENTIALS,%0A%0A" +
-        "I would like to order:%0A";
+    let message = "Hello RIFUMO LUXE ESSENTIALS,\n\nI would like to order:\n";
 
     let total = 0;
     let itemCount = 0;
 
     for (let item in cart) {
 
+        if (!products[item]) continue;
+
         let quantity = cart[item];
         let subtotal = products[item].price * quantity;
 
-        message +=
-            "- " + item +
-            " x" + quantity +
-            " = R" + subtotal + "%0A";
+        message += "- " + item + " x" + quantity + " = R" + subtotal + "\n";
 
         total += subtotal;
         itemCount += quantity;
     }
 
-    message += "%0A";
-    message += "Total Items: " + itemCount + "%0A";
+    message += "\nTotal Items: " + itemCount + "\n";
     message += "Total Price: R" + total;
 
+    // encodeURIComponent handles spaces, parentheses, newlines, etc.
+    // correctly, unlike hand-building %20/%0A ourselves.
+    const encodedMessage = encodeURIComponent(message);
+
     window.open(
-        "https://wa.me/27768089626?text=" + message,
+        "https://wa.me/27768089626?text=" + encodedMessage,
         "_blank"
     );
 }
@@ -345,3 +352,4 @@ if (themeButton) {
 // =========================
 
 displayCart();
+
